@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  content: MyString
+  post_id: 1
+  author_id: 1
+  shared_content: MyString
+  shared_created: 2021-05-07 18:39:38
+  created: 2021-05-07 18:39:38
+  modified: 2021-05-07 18:39:38
+  deleted: false
+
+two:
+  user_id: 1
+  content: MyString
+  post_id: 1
+  author_id: 1
+  shared_content: MyString
+  shared_created: 2021-05-07 18:39:38
+  created: 2021-05-07 18:39:38
+  modified: 2021-05-07 18:39:38
+  deleted: false
