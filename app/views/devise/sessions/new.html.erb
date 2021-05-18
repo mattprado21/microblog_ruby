@@ -1,0 +1,57 @@
+
+<body class="sign-in">
+	<div class="wrapper">
+		<div class="sign-in-page">
+			<div class="signin-popup">
+				<div class="signin-pop">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="cmp-info">
+								<div class="cm-logo">
+                                    <%= image_tag("ruby-logo.png", :alt => "Ruby Logo") %>
+									<p>
+                                        Ruby on Rails Microblog. <br>
+                                        A simple social media website.
+                                    </p>
+								</div><!--cm-logo end-->	
+                                <%= image_tag("cm-main-img.png", :alt => "Ruby Logo") %>
+							</div><!--cmp-info end-->
+						</div>
+						<div class="col-lg-6">
+							<div class="login-sec">
+                                <div class="sign-title">
+                                    <h3>Sign In</h3>
+                                </div>
+                                <br>
+								<div class="sign_in_sec current" id="tab-2">
+									<div class="dff-tab current" id="tab-3">
+										<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+											<div class="row">
+                          <div class="col-lg-12 no-pdd">
+                            <div class="sn-field">
+                              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+                              <i class="fa fa-user"></i>
+                            </div>
+                          </div>
+                          <div class="col-lg-12 no-pdd">
+                            <div class="sn-field">
+                              <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
+                              <i class="fa fa-lock"></i>
+                            </div>
+                          </div>
+                          <div class="col-lg-12 no-pdd">
+                              <%= f.submit "Log in", class: "sign_in_sec_form_button"%>
+                          </div>
+                        </div>
+                      <% end %>
+                    <%= render "devise/shared/links" %>
+									</div><!--dff-tab end-->
+								</div>
+							</div><!--login-sec end-->
+						</div>
+					</div>
+				</div><!--signin-pop end-->
+			</div><!--signin-popup end-->
+		</div><!--sign-in-page end-->
+	</div><!--theme-layout end-->
+</body>

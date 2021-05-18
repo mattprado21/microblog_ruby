@@ -25,6 +25,12 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem 'dotenv-rails'
+
+gem 'bootstrap3-rails', '~> 3.2'
+gem 'devise'
+gem 'font-awesome-rails'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
