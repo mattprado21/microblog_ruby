@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_104454) do
+ActiveRecord::Schema.define(version: 2021_05_17_093021) do
 
-  create_table "friends", charset: "utf8mb4", force: :cascade do |t|
+  create_table "friends", charset: "latin1", force: :cascade do |t|
     t.integer "followed_user_id"
     t.integer "following_user_id"
     t.string "status"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_104454) do
     t.boolean "deleted"
   end
 
-  create_table "post_comments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "post_comments", charset: "latin1", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
     t.string "comment"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_104454) do
     t.boolean "deleted"
   end
 
-  create_table "post_images", charset: "utf8mb4", force: :cascade do |t|
+  create_table "post_images", charset: "latin1", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
     t.string "image"
@@ -40,14 +40,14 @@ ActiveRecord::Schema.define(version: 2021_05_07_104454) do
     t.boolean "deleted"
   end
 
-  create_table "post_reactions", charset: "utf8mb4", force: :cascade do |t|
+  create_table "post_reactions", charset: "latin1", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
     t.integer "comment_id"
     t.datetime "created"
   end
 
-  create_table "posts", charset: "utf8mb4", force: :cascade do |t|
+  create_table "posts", charset: "latin1", force: :cascade do |t|
     t.integer "user_id"
     t.string "content"
     t.integer "post_id"
@@ -59,21 +59,23 @@ ActiveRecord::Schema.define(version: 2021_05_07_104454) do
     t.boolean "deleted"
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.string "password"
-    t.string "email_verification_token"
-    t.boolean "is_verified", default: false
+  create_table "users", charset: "latin1", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.string "first_name"
     t.string "last_name"
     t.string "gender"
     t.date "birthdate"
-    t.string "address"
     t.string "bio"
     t.string "profile_image"
-    t.datetime "created"
-    t.datetime "modified"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
