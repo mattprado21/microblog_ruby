@@ -30,6 +30,7 @@ gem 'dotenv-rails'
 gem 'bootstrap3-rails', '~> 3.2'
 gem 'devise'
 gem 'font-awesome-rails'
+gem 'popper_js', '~> 2.9.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_17_093021) do
+ActiveRecord::Schema.define(version: 2021_05_18_092631) do
 
   create_table "friends", charset: "latin1", force: :cascade do |t|
     t.integer "followed_user_id"
@@ -50,13 +50,9 @@ ActiveRecord::Schema.define(version: 2021_05_17_093021) do
   create_table "posts", charset: "latin1", force: :cascade do |t|
     t.integer "user_id"
     t.string "content"
-    t.integer "post_id"
-    t.integer "author_id"
-    t.string "shared_content"
-    t.datetime "shared_created"
-    t.datetime "created"
-    t.datetime "modified"
     t.boolean "deleted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", charset: "latin1", force: :cascade do |t|
