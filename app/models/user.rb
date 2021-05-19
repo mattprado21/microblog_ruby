@@ -4,6 +4,10 @@ class User < ApplicationRecord
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :validatable,
            :confirmable
+
+    # Associations
+    has_many :posts
+    
     # # Enums
     # enum gender: {male: 0, female: 1}
   

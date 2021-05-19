@@ -1,0 +1,60 @@
+<div class="main-section-data">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 offset-md-3 no-pd">
+            <div id="posts-list" class="main-ws-sec">
+                <div class="posts-section">
+                        <div class="post-bar">
+                            <div class="post_topbar">
+                                <div class="usy-dt">
+                                    <img src="http://via.placeholder.com/50x50" alt="">
+                                    <div class="usy-name">
+                                        <h3><%= @posts.user.email %></h3>
+                                        <span>
+                                            <%= image_tag("clock.png", :alt => "Clock") %>
+                                            <%= @posts.created_at %>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="ed-opts">
+                                    <a href="#"><i class="fa fa-edit"></i></a>
+                                    <a href="#"><i class="fa fa-trash"></i></a>
+                                </div>
+                            </div>
+                            <%= link_to root_path do %>
+                                <div class="job_descp">
+                                    <p>
+                                        <%= @posts.content %>
+                                        <!-- <a href="#" title="">view more</a> -->
+                                    </p>
+                                </div>
+                            <% end %>
+                            <div class="job-status-bar">
+                                <ul class="like-com">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-heart"></i>
+                                            Like
+                                        </a>
+                                    </li> 
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-comment"></i>
+                                            Comment
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div><!--post-bar end-->
+                    
+                    <!--/ post-bar-->
+                </div>
+            </div>
+            <!--/ main-ws-sec -->
+        </div>
+        <!--/ col-lg-6 col-md-8 no-pd -->
+    </div>
+    <!--/ row -->
+</div>
+<!--/ main-section-data -->
+
+<!--/ modal fade -->
