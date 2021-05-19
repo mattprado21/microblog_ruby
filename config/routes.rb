@@ -3,10 +3,7 @@ Rails.application.routes.draw do
   get 'home/index'
   root to: 'home#index'
   
-  get 'posts/index'
-  get 'users/index'
+  post '/home/index', to: 'posts#create'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
-  # get '/users/sign_up', to: 'users#sign_up'
-  # get '/users/sign_in', to: 'users#sign_in'
 end
