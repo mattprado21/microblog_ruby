@@ -28,7 +28,7 @@
               <div class="user-info">
                 <img src="http://via.placeholder.com/30x30" alt="">
                 <%= link_to("Sign Out", destroy_user_session_path, :method => 'delete') %>
-                <i class="la la-sort-down"></i>
+                <i class="fa fa-sort-down"></i>
               </div>
               <div class="user-account-settingss">
                 <h3>Setting</h3>
@@ -40,6 +40,11 @@
                 </ul>
                 <h3 class="tc"><a href="sign-in.html" title="">Logout</a></h3>
               </div><!--user-account-settingss end-->
+            </div>
+            <div class="user-account" style="width:120px">
+              <div class="user-info">
+                <%= link_to("Home", root_path) %>
+              </div>
             </div>
           </div><!--header-data end-->
         </div>

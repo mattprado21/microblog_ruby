@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create(
+    @post = Post.new(
       user_id: current_user.id,
       content: params[:content],
       deleted: false,
@@ -11,7 +11,10 @@ class PostsController < ApplicationController
 
     if @post.save
       redirect_to root_path
-      # redirect_to :back
     end
+  end
+  
+  def view
+    @posts = Post.includes(:user).find(params[:id])
   end
 end
