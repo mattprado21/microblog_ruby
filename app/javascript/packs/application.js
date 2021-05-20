@@ -10,7 +10,7 @@ import "channels"
 // require('popper')
 
 // import "custom/bootstrap.min"
-// import "custom/script"
+import "custom/script"
 
 require('jquery')
 
