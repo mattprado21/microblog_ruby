@@ -66,7 +66,6 @@
                                                 <div class="ed-opts">
                                                     <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_post_path(post.id) %>
                                                     <%= link_to '<i class="fa fa-trash"></i>'.html_safe, post, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
-                                                    
                                                 </div>
                                             </div>
                                             <%= link_to post_path(post.id) do %>
@@ -79,12 +78,28 @@
                                             <% end %>
                                             <div class="job-status-bar">
                                                 <ul class="like-com">
+                                                    <%
+                                                        pre_like = post.likes.find { |like| like.user_id == current_user.id}
+                                                        post_like = "<i class='fa fa-heart'></i>
+                                                            #{(post.likes.count != 0 ? post.likes.count : '')}
+                                                            #{((post.likes.count) > 1 ? 'Likes' : 'Like')}"
+                                                    %>
                                                     <li>
-                                                        <a href="#">
-                                                            <i class="fa fa-heart"></i>
-                                                            Like
-                                                        </a>
-                                                    </li> 
+                                                        <% if pre_like %>
+                                                            <%= 
+                                                                link_to post_like.html_safe,
+                                                                post_like_path(post, pre_like),
+                                                                method: :delete,
+                                                                class: 'active'
+                                                            %>
+                                                        <% else %>
+                                                            <%= 
+                                                                link_to post_like.html_safe,
+                                                                post_likes_path(post),
+                                                                method: :post
+                                                            %>
+                                                        <% end %>
+                                                    </li>
                                                     <li>
                                                         <a href="#">
                                                             <i class="fa fa-comment"></i>
