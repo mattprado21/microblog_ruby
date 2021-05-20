@@ -1048,10 +1048,11 @@ main {
 }
 .ed-opts > a {
 	color: #b2b2b2;
-	font-size: 30px;
+	font-size: 20px;
 	float: right;
 	position: relative;
 	left: 13px;
+	margin-left: 5px;
 }
 .ed-options {
 	position: absolute;
@@ -1648,7 +1649,7 @@ main {
 	line-height: 40px;
 	resize: none;
 }
-.comment_box form button {
+.comment_box form .send_button {
 	float: right;
 	color: #fff;
 	background-color: #e44d3a;
@@ -1660,6 +1661,7 @@ main {
 	margin-left: 10px;
 	cursor: pointer;
 	font-weight: 600;
+	width: auto;
 }
 
 /* ============== process-comm ============= */

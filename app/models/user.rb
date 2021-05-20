@@ -8,6 +8,7 @@ class User < ApplicationRecord
     # Associations
     has_many :posts
     has_many :likes, dependent: :destroy
+    has_many :comments
     
     # # Enums
     # enum gender: {male: 0, female: 1}
