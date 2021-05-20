@@ -39,7 +39,7 @@
                                 <div class="posts-section">
                                     <div class="post-topbar">
                                         <%= form_with model: @post do |form| %>
-                                             <div class="row">
+                                            <div class="row">
                                                 <%= render 'layouts/forms/post', form: form %>
                                                 <div class="col-lg-12">
                                                     <ul>
@@ -49,66 +49,105 @@
                                             </div>
                                         <% end %>
                                     </div><!--post-topbar end-->
-                
                                     <% @posts.each do |post| %>
                                         <div class="post-bar">
-                                            <div class="post_topbar">
-                                                <div class="usy-dt">
-                                                    <img src="http://via.placeholder.com/50x50" alt="">
-                                                    <div class="usy-name">
-                                                        <h3><%= "Raymart Prado" %></h3>
-                                                        <span>
-                                                            <%= image_tag("clock.png", :alt => "Clock") %>
-                                                            <%= post.created_at %>
-                                                        </span>
+                                            <div class="post-bar no-margin">
+                                                <div class="post_topbar">
+                                                    <div class="usy-dt">
+                                                        <img src="http://via.placeholder.com/50x50" alt="">
+                                                        <div class="usy-name">
+                                                            <h3><%= "Raymart Prado" %></h3>
+                                                            <span>
+                                                                <%= image_tag("clock.png", :alt => "Clock") %>
+                                                                <%= post.updated_at.strftime("%A, %B %e, %Y") %>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ed-opts">
+                                                        <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_post_path(post.id) %>
+                                                        <%= link_to '<i class="fa fa-trash"></i>'.html_safe, post, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
                                                     </div>
                                                 </div>
-                                                <div class="ed-opts">
-                                                    <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_post_path(post.id) %>
-                                                    <%= link_to '<i class="fa fa-trash"></i>'.html_safe, post, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
+                                                <%= link_to post_path(post.id) do %>
+                                                    <div class="job_descp">
+                                                        <p>
+                                                            <%= post.content %>
+                                                            <!-- <a href="#" title="">view more</a> -->
+                                                        </p>
+                                                    </div>
+                                                <% end %>
+                                                <div class="job-status-bar">
+                                                    <ul class="like-com">
+                                                        <%
+                                                            pre_like = post.likes.find { |like| like.user_id == current_user.id}
+                                                            post_like = "<i class='fa fa-heart'></i>
+                                                                #{(post.likes.count != 0 ? post.likes.count : '')}
+                                                                #{((post.likes.count) > 1 ? 'Likes' : 'Like')}"
+                                                        %>
+                                                        <li>
+                                                            <% if pre_like %>
+                                                                <%= 
+                                                                    link_to post_like.html_safe,
+                                                                    post_like_path(post, pre_like),
+                                                                    method: :delete,
+                                                                    class: 'active'
+                                                                %>
+                                                            <% else %>
+                                                                <%= 
+                                                                    link_to post_like.html_safe,
+                                                                    post_likes_path(post),
+                                                                    method: :post
+                                                                %>
+                                                            <% end %>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-comment"></i>
+                                                                Comment
+                                                            </a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-                                            </div>
-                                            <%= link_to post_path(post.id) do %>
-                                                <div class="job_descp">
-                                                    <p>
-                                                        <%= post.content %>
-                                                        <!-- <a href="#" title="">view more</a> -->
-                                                    </p>
-                                                </div>
-                                            <% end %>
-                                            <div class="job-status-bar">
-                                                <ul class="like-com">
-                                                    <%
-                                                        pre_like = post.likes.find { |like| like.user_id == current_user.id}
-                                                        post_like = "<i class='fa fa-heart'></i>
-                                                            #{(post.likes.count != 0 ? post.likes.count : '')}
-                                                            #{((post.likes.count) > 1 ? 'Likes' : 'Like')}"
-                                                    %>
-                                                    <li>
-                                                        <% if pre_like %>
-                                                            <%= 
-                                                                link_to post_like.html_safe,
-                                                                post_like_path(post, pre_like),
-                                                                method: :delete,
-                                                                class: 'active'
-                                                            %>
-                                                        <% else %>
-                                                            <%= 
-                                                                link_to post_like.html_safe,
-                                                                post_likes_path(post),
-                                                                method: :post
-                                                            %>
+                                            </div><!--post-bar end-->
+                                            <div class="comment-section">
+                                                <div class="comment-sec">
+                                                    <ul>
+                                                        <% post.comments.each do |comment| %>
+                                                            <li>
+                                                                <div class="comment-list">
+                                                                    <div class="bg-img">
+                                                                        <img src="http://via.placeholder.com/40x40" alt="">
+                                                                    </div>
+                                                                    <div class="comment">
+                                                                        <h3>
+                                                                            <%= comment.user.email %>
+                                                                        </h3>
+                                                                        <span>
+                                                                            <img src="images/clock.png" alt=""> 
+                                                                            <%= comment.updated_at.strftime("%A, %B %e, %Y") %>
+                                                                        </span>
+                                                                        <p>
+                                                                            <%= comment.comment %>
+                                                                        </p>
+                                                                    </div>
+                                                                </div><!--comment-list end-->
+                                                            </li>
                                                         <% end %>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="fa fa-comment"></i>
-                                                            Comment
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div><!--post-bar end-->
+                                                    </ul>
+                                                </div><!--comment-sec end-->
+                                                <div class="post-comment">
+                                                    <div class="cm_img">
+                                                        <img src="http://via.placeholder.com/40x40" alt="">
+                                                    </div>
+                                                    <div class="comment_box">
+                                                        <%= form_with model: @post do |f| %>
+                                                            <%= f.text_field :comment, placeholder: 'Post a comment' %>
+                                                            <%= f.submit 'Send', class: "send_button" %>
+                                                        <% end %>
+                                                    </div>
+                                                </div><!--post-comment end-->
+                                            </div><!--comment-section end-->
+                                        </div>
                                     <% end %>
                                 </div><!--posts-section end-->
                             </div><!--main-ws-sec end-->
