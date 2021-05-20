@@ -8,34 +8,51 @@
                                 <div class="usy-dt">
                                     <img src="http://via.placeholder.com/50x50" alt="">
                                     <div class="usy-name">
-                                        <h3><%= @posts.user.email %></h3>
+                                        <h3><%= @post.user.email %></h3>
                                         <span>
                                             <%= image_tag("clock.png", :alt => "Clock") %>
-                                            <%= @posts.created_at %>
+                                            <%= @post.created_at %>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="ed-opts">
-                                    <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_post_path(@posts.id) %>
+                                    <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_post_path(@post.id) %>
                                     <%= link_to '<i class="fa fa-trash"></i>'.html_safe, @post, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
                                 </div>
                             </div>
                             <%= link_to root_path do %>
                                 <div class="job_descp">
                                     <p>
-                                        <%= @posts.content %>
+                                        <%= @post.content %>
                                         <!-- <a href="#" title="">view more</a> -->
                                     </p>
                                 </div>
                             <% end %>
                             <div class="job-status-bar">
                                 <ul class="like-com">
+                                    <%
+                                        pre_like = @post.likes.find { |like| like.user_id == current_user.id}
+                                        post_like = "<i class='fa fa-heart'></i>
+                                            #{(@post.likes.count != 0 ? @post.likes.count : '')}
+                                            #{((@post.likes.count) > 1 ? 'Likes' : 'Like')}"
+                                    %>
                                     <li>
-                                        <a href="#">
-                                            <i class="fa fa-heart"></i>
-                                            Like
-                                        </a>
-                                    </li> 
+                                        <% if pre_like %>
+                                            <%= 
+                                                link_to post_like.html_safe,
+                                                post_like_path(@post, pre_like),
+                                                method: :delete,
+                                                class: 'active'
+                                            %>
+                                        <% else %>
+                                            <%= 
+                                                link_to post_like.html_safe,
+                                                post_likes_path(@post),
+                                                method: :post
+                                            %>
+                                        <% end %>
+                                    </li>
+                                    
                                     <li>
                                         <a href="#">
                                             <i class="fa fa-comment"></i>
@@ -45,7 +62,6 @@
                                 </ul>
                             </div>
                         </div><!--post-bar end-->
-                    
                     <!--/ post-bar-->
                 </div>
             </div>
@@ -56,5 +72,3 @@
     <!--/ row -->
 </div>
 <!--/ main-section-data -->
-
-<!--/ modal fade -->
