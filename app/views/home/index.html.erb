@@ -14,7 +14,7 @@
                                             </div>
                                         </div><!--username-dt end-->
                                         <div class="user-specs">
-                                            <h3>Raymart Prado</h3>
+                                            <h6><%= "Raymart Prado" %></h6>
                                             <span>This is my bio.</span>
                                         </div>
                                     </div><!--user-profile end-->
@@ -39,40 +39,24 @@
                                 <div class="posts-section">
                                     <div class="post-topbar">
                                         <%= form_with model: @post do |form| %>
-                                            <div class="form-group">
-                                                <%=
-                                                    form.text_area :content,
-                                                    class: "form-control",
-                                                    placeholder: "What\'s Happening?",
-                                                    maxlength: 140,
-                                                    rows: 3,
-                                                    cols: 100,
-                                                    required: false
-                                                %>
-                                                <small class="form-text text-muted" style="float:left;" >
-                                                    <span id="remainingCharacter">140</span>
-                                                    Character(s) Remaining
-                                                </small><br>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="col form-group">
+                                             <div class="row">
+                                                <%= render 'layouts/forms/post', form: form %>
+                                                <div class="col-lg-12">
+                                                    <ul>
+                                                        <%= form.submit "Create Post", class:"btn btn-primary float-right" %>
+                                                    </ul>
                                                 </div>
-                                                <div class="col form-group">
-                                                    <%= form.submit "Create Post", class:"btn btn-primary float-right" %>
-                                                </div>
-                                                <!--/ col form-group -->
                                             </div>
-                                            <!--/ form-row -->
                                         <% end %>
                                     </div><!--post-topbar end-->
-                                    
+                
                                     <% @posts.each do |post| %>
                                         <div class="post-bar">
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
                                                     <img src="http://via.placeholder.com/50x50" alt="">
                                                     <div class="usy-name">
-                                                        <h3><%= post.user.email %></h3>
+                                                        <h3><%= "Raymart Prado" %></h3>
                                                         <span>
                                                             <%= image_tag("clock.png", :alt => "Clock") %>
                                                             <%= post.created_at %>
@@ -80,11 +64,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="ed-opts">
-                                                    <a href="#"><i class="fa fa-edit"></i></a>
-                                                    <a href="#"><i class="fa fa-trash"></i></a>
+                                                    <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_post_path(post.id) %>
+                                                    <%= link_to '<i class="fa fa-trash"></i>'.html_safe, post, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
+                                                    
                                                 </div>
                                             </div>
-                                            <%= link_to root_path do %>
+                                            <%= link_to post_path(post.id) do %>
                                                 <div class="job_descp">
                                                     <p>
                                                         <%= post.content %>
@@ -123,3 +108,37 @@
         </div>
     </main>
 </div><!--theme-layout end-->
+
+<div class="post-popup job_post">
+    <div class="post-project">
+        <h3>Edit Post</h3>
+        <div class="post-project-fields">
+            <%= form_with model: @post do |form| %>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <%=
+                            form.text_area :content,
+                            class: "form-control",
+                            placeholder: "What\'s Happening?",
+                            maxlength: 140,
+                            rows: 3,
+                            cols: 100,
+                            required: false
+                        %>
+                        <small class="form-text text-muted" style="float:left;" >
+                            <span id="remainingCharacter">140</span>
+                            Character(s) Remaining
+                        </small><br>
+                    </div>
+                    <div class="col-lg-12">
+                        <ul>
+                            <li><%= form.submit "Create Post", class:"btn btn-primary" %></li>
+                            <li><a href="#" title="">Cancel</a></li>
+                        </ul>
+                    </div>
+                </div>
+            <% end %>
+        </div><!--post-project-fields end-->
+        <a href="#" title=""><i class="fa fa-times-circle-o"></i></a>
+    </div><!--post-project end-->
+</div><!--post-project-popup end-->

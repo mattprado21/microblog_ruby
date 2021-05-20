@@ -12,44 +12,7 @@
 
   <body>
     <% if current_user %>
-      <header>
-        <div class="container">
-          <div class="header-data">
-            <div class="logo">
-              <a href="index.html" title=""><img src="images/logo.png" alt=""></a>
-            </div><!--logo end-->
-            <div class="search-bar">
-              <form>
-                <input type="text" name="search" placeholder="Search...">
-                <button type="submit"><i class="la la-search"></i></button>
-              </form>
-            </div><!--search-bar end-->
-            <div class="user-account" style="width:120px">
-              <div class="user-info">
-                <img src="http://via.placeholder.com/30x30" alt="">
-                <%= link_to("Sign Out", destroy_user_session_path, :method => 'delete') %>
-                <i class="fa fa-sort-down"></i>
-              </div>
-              <div class="user-account-settingss">
-                <h3>Setting</h3>
-                <ul class="us-links">
-                  <li><a href="profile-account-setting.html" title="">Account Setting</a></li>
-                  <li><a href="#" title="">Privacy</a></li>
-                  <li><a href="#" title="">Faqs</a></li>
-                  <li><a href="#" title="">Terms & Conditions</a></li>
-                </ul>
-                <h3 class="tc"><a href="sign-in.html" title="">Logout</a></h3>
-              </div><!--user-account-settingss end-->
-            </div>
-            <div class="user-account" style="width:120px">
-              <div class="user-info">
-                <%= link_to("Home", root_path) %>
-              </div>
-            </div>
-          </div><!--header-data end-->
-        </div>
-      </header><!--header end-->
-      
+      <%= render 'layouts/components/header' %>
     <% end %>
 
     <% if notice %>
