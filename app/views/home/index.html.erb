@@ -20,15 +20,15 @@
                                     </div><!--user-profile end-->
                                     <ul class="user-fw-status">
                                         <li>
-                                            <h4>Following</h4>
+                                            <h4><%= t('label.following') %></h4>
                                             <span>34</span>
                                         </li>
                                         <li>
-                                            <h4>Followers</h4>
+                                            <h4><%= t('label.followers') %></h4>
                                             <span>155</span>
                                         </li>
                                         <li>
-                                            <a href="#" title="">View Profile</a>
+                                            <a href="#" title=""><%= t('label.view_profile') %></a>
                                         </li>
                                     </ul>
                                 </div><!--user-data end-->
@@ -43,7 +43,7 @@
                                                 <%= render 'layouts/forms/post', form: form %>
                                                 <div class="col-lg-12">
                                                     <ul>
-                                                        <%= form.submit "Create Post", class:"btn btn-primary float-right" %>
+                                                        <%= form.submit t('label.create_post'), class:"btn btn-primary float-right" %>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -59,7 +59,7 @@
                                                             <h3><%= "Raymart Prado" %></h3>
                                                             <span>
                                                                 <%= image_tag("clock.png", :alt => "Clock") %>
-                                                                Posted <%= time_ago_in_words(post.created_at) %> ago.
+                                                                <%= time_ago_in_words(post.created_at) %>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -82,7 +82,7 @@
                                                             pre_like = post.likes.find { |like| like.user_id == current_user.id}
                                                             post_like = "<i class='fa fa-heart'></i>
                                                                 #{(post.likes.count != 0 ? post.likes.count : '')}
-                                                                #{((post.likes.count) > 1 ? 'Likes' : 'Like')}"
+                                                                #{((post.likes.count) > 1 ? t('label.likes') : t('label.like'))}"
                                                         %>
                                                         <li>
                                                             <% if pre_like %>
@@ -103,7 +103,7 @@
                                                         <li>
                                                             <a href="#">
                                                                 <i class="fa fa-comment"></i>
-                                                                Comment
+                                                                <%= t('label.comment') %>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -145,8 +145,8 @@
                                                     </div>
                                                     <div class="comment_box">
                                                         <%= form_with(url: post_comments_path(post)) do |f| %>
-                                                            <%= f.text_field :comment, placeholder: 'Post a comment' %>
-                                                            <%= f.submit 'Send', class: "send_button" %>
+                                                            <%= f.text_field :comment, placeholder: t('label.add_comment') %>
+                                                            <%= f.submit t('label.send'), class: "send_button" %>
                                                         <% end %>
                                                     </div>
                                                 </div><!--post-comment end-->

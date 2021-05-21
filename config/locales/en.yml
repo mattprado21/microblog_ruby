@@ -30,4 +30,36 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  input:
+    email: "Email"
+    password: "Password"
+    confirm_password: "Confirm Password"
+    whats_happening: "What's Happening?"
+  label:
+    sign_up: "Sign Up"
+    sign_in: "Sign In"
+    sign_out: "Sign Out"
+    forgot_password: "Forgot your password?"
+    email: "Email"
+    following: "Following"
+    followers: "Followers"
+    view_profile: "View Profile"
+    create_post: "Create Post"
+    add_comment: "Add a comment"
+    home: "Home"
+    send: "Send"
+    account_setting: "Account Setting"
+    like: "Like"
+    likes: "Likes"
+    comment: "Comment"
+    change_my_password: "Change my password"
+    new_password: "New Password"
+    confirm_new_password: "Confirm new password"
+    search: "Search..."
+  message:
+    rails_microblog_text: "Ruby on Rails Microblog."
+    rails_microblog_sub_text: "A simple social media website."
+    sign_up_fill_form: "Please fill in this form to create account."
+    send_reset_password: "Send me reset password instructions"
+    resend_confirmation: "Resend confirmation instructions"
+    change_your_password: "Change your password"

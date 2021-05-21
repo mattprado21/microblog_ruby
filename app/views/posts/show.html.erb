@@ -1,130 +1,128 @@
-<div class="wrapper">
-    <main style="padding:30px">
-        <div class="main-section">
-            <div class="container">
-                <div class="main-section-data">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 pd-left-none no-pd">
-                        </div>
-                        <div class="col-lg-6 col-md-8 offset-md-3 no-pd">
-                            <div id="posts-list" class="main-ws-sec">
-                                <div class="posts-section">
-                                    <div class="posty">
-                                        <div class="post-bar no-margin">
-                                            <div class="post_topbar">
-                                                <div class="usy-dt">
-                                                    <img src="http://via.placeholder.com/50x50" alt="">
-                                                    <div class="usy-name">
-                                                        <h3><%= @post.user.email %></h3>
-                                                        <span>
-                                                            <%= image_tag("clock.png", :alt => "Clock") %>
-                                                            Posted <%= time_ago_in_words(@post.created_at) %> ago.
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="ed-opts">
-                                                    <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_post_path(@post.id) %>
-                                                    <%= link_to '<i class="fa fa-trash"></i>'.html_safe, @post, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
+<main style="padding:30px">
+    <div class="main-section">
+        <div class="container">
+            <div class="main-section-data">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 pd-left-none no-pd">
+                    </div>
+                    <div class="col-lg-6 col-md-8 offset-md-3 no-pd">
+                        <div id="posts-list" class="main-ws-sec">
+                            <div class="posts-section">
+                                <div class="posty">
+                                    <div class="post-bar no-margin">
+                                        <div class="post_topbar">
+                                            <div class="usy-dt">
+                                                <img src="http://via.placeholder.com/50x50" alt="">
+                                                <div class="usy-name">
+                                                    <h3><%= @post.user.email %></h3>
+                                                    <span>
+                                                        <%= image_tag("clock.png", :alt => "Clock") %>
+                                                        <%= time_ago_in_words(@post.created_at) %>
+                                                    </span>
                                                 </div>
                                             </div>
-                                            <%= link_to root_path do %>
-                                                <div class="job_descp">
-                                                    <p>
-                                                        <%= @post.content %>
-                                                        <!-- <a href="#" title="">view more</a> -->
-                                                    </p>
-                                                </div>
-                                            <% end %>
-                                            <div class="job-status-bar">
-                                                <ul class="like-com">
-                                                    <%
-                                                        pre_like = @post.likes.find { |like| like.user_id == current_user.id}
-                                                        post_like = "<i class='fa fa-heart'></i>
-                                                            #{(@post.likes.count != 0 ? @post.likes.count : '')}
-                                                            #{((@post.likes.count) > 1 ? 'Likes' : 'Like')}"
-                                                    %>
-                                                    <li>
-                                                        <% if pre_like %>
-                                                            <%= 
-                                                                link_to post_like.html_safe,
-                                                                post_like_path(@post, pre_like),
-                                                                method: :delete,
-                                                                class: 'active'
-                                                            %>
-                                                        <% else %>
-                                                            <%= 
-                                                                link_to post_like.html_safe,
-                                                                post_likes_path(@post),
-                                                                method: :post
-                                                            %>
-                                                        <% end %>
-                                                    </li>
-                                                    
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="fa fa-comment"></i>
-                                                            Comment
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                            <div class="ed-opts">
+                                                <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_post_path(@post.id) %>
+                                                <%= link_to '<i class="fa fa-trash"></i>'.html_safe, @post, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
                                             </div>
-                                        </div><!--post-bar end-->
-                                        <div class="comment-section">
-                                            <div class="comment-sec">
-                                                <ul>
-                                                    <% @post.comments.each do |comment| %>
-                                                        <li>
-                                                            <div class="comment-list">
-                                                                <div class="bg-img">
-                                                                    <img src="http://via.placeholder.com/40x40" alt="">
-                                                                </div>
-                                                                <div class="comment">
-                                                                    <h3>
-                                                                        <%= comment.user.email %>
-                                                                        <div class="ed-opts">
-                                                                            <i id="<%= comment.id %>" data-post_id="<%= comment.post_id %>" data-comment="<%= comment.comment %>" class="fa fa-edit edit-comment"></i>
-                                                                            <%= link_to '<i class="fa fa-trash"></i>'.html_safe, post_comment_path(comment.post_id, comment.id), method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
-                                                                        </div>
-                                                                    </h3>
-                                                                    <span>
-                                                                        <%= image_tag("clock.png", :alt => "Clock") %>
-                                                                        <%= time_ago_in_words(comment.created_at) %> ago.
-                                                                    </span>
-                                                                    <p>
-                                                                        <%= comment.comment %>
-                                                                    </p>
-                                                                </div>
-                                                            </div><!--comment-list end-->
-                                                        </li>
+                                        </div>
+                                        <%= link_to root_path do %>
+                                            <div class="job_descp">
+                                                <p>
+                                                    <%= @post.content %>
+                                                    <!-- <a href="#" title="">view more</a> -->
+                                                </p>
+                                            </div>
+                                        <% end %>
+                                        <div class="job-status-bar">
+                                            <ul class="like-com">
+                                                <%
+                                                    pre_like = @post.likes.find { |like| like.user_id == current_user.id}
+                                                    post_like = "<i class='fa fa-heart'></i>
+                                                        #{(@post.likes.count != 0 ? @post.likes.count : '')}
+                                                        #{((@post.likes.count) > 1 ? t('label.likes') : t('label.like'))}"
+                                                %>
+                                                <li>
+                                                    <% if pre_like %>
+                                                        <%= 
+                                                            link_to post_like.html_safe,
+                                                            post_like_path(@post, pre_like),
+                                                            method: :delete,
+                                                            class: 'active'
+                                                        %>
+                                                    <% else %>
+                                                        <%= 
+                                                            link_to post_like.html_safe,
+                                                            post_likes_path(@post),
+                                                            method: :post
+                                                        %>
                                                     <% end %>
-                                                </ul>
-                                            </div><!--comment-sec end-->
-                                            <div class="post-comment">
-                                                <div class="cm_img">
-                                                    <img src="http://via.placeholder.com/40x40" alt="">
-                                                </div>
-                                                <div class="comment_box">
-                                                    <%= form_with(url: post_comments_path(@post))do |f| %>
-                                                        <%= f.text_field :comment, placeholder: 'Post a comment' %>
-                                                        <%= f.submit 'Send', class: "send_button" %>
-                                                    <% end %>
-                                                </div>
-                                            </div><!--post-comment end-->
-                                        </div><!--comment-section end-->
-                                    </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-comment"></i>
+                                                        <%= t('label.comment') %>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div><!--post-bar end-->
+                                    <div class="comment-section">
+                                        <div class="comment-sec">
+                                            <ul>
+                                                <% @post.comments.each do |comment| %>
+                                                    <li>
+                                                        <div class="comment-list">
+                                                            <div class="bg-img">
+                                                                <img src="http://via.placeholder.com/40x40" alt="">
+                                                            </div>
+                                                            <div class="comment">
+                                                                <h3>
+                                                                    <%= comment.user.email %>
+                                                                    <div class="ed-opts">
+                                                                        <i id="<%= comment.id %>" data-post_id="<%= comment.post_id %>" data-comment="<%= comment.comment %>" class="fa fa-edit edit-comment"></i>
+                                                                        <%= link_to '<i class="fa fa-trash"></i>'.html_safe, post_comment_path(comment.post_id, comment.id), method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
+                                                                    </div>
+                                                                </h3>
+                                                                <span>
+                                                                    <%= image_tag("clock.png", :alt => "Clock") %>
+                                                                    <%= time_ago_in_words(comment.created_at) %> ago.
+                                                                </span>
+                                                                <p>
+                                                                    <%= comment.comment %>
+                                                                </p>
+                                                            </div>
+                                                        </div><!--comment-list end-->
+                                                    </li>
+                                                <% end %>
+                                            </ul>
+                                        </div><!--comment-sec end-->
+                                        <div class="post-comment">
+                                            <div class="cm_img">
+                                                <img src="http://via.placeholder.com/40x40" alt="">
+                                            </div>
+                                            <div class="comment_box">
+                                                <%= form_with(url: post_comments_path(@post))do |f| %>
+                                                    <%= f.text_field :comment, placeholder: t('label.add_comment') %>
+                                                    <%= f.submit t('label.send'), class: "send_button" %>
+                                                <% end %>
+                                            </div>
+                                        </div><!--post-comment end-->
+                                    </div><!--comment-section end-->
                                 </div>
                             </div>
-                            <!--/ main-ws-sec -->
                         </div>
-                        <!--/ col-lg-6 col-md-8 no-pd -->
-                        <div class="col-lg-3 pd-right-none no-pd">
-                        </div>
+                        <!--/ main-ws-sec -->
                     </div>
-                    <!--/ row -->
+                    <!--/ col-lg-6 col-md-8 no-pd -->
+                    <div class="col-lg-3 pd-right-none no-pd">
+                    </div>
                 </div>
-                <!--/ main-section-data -->
+                <!--/ row -->
             </div>
+            <!--/ main-section-data -->
         </div>
     </div>
-</div>
+</main>
 <%= render 'layouts/forms/edit_comment_modal' %>

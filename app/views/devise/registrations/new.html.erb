@@ -7,50 +7,49 @@
 						<div class="col-lg-6">
 							<div class="cmp-info">
 								<div class="cm-logo">
-                  <%= image_tag("ruby-logo.png", :alt => "Ruby Logo") %>
+									<%= image_tag("ruby-logo.png", :alt => "Ruby Logo") %>
 									<p>
-                    Ruby on Rails Microblog. <br>
-                    A simple social media website.
-                  </p>
+										<%= t('message.rails_microblog_text') %> <br>
+										<%= t('message.rails_microblog_sub_text') %>
+									</p>
 								</div><!--cm-logo end-->	
-                <%= image_tag("cm-main-img.png", :alt => "Ruby Logo") %>
+									<%= image_tag("cm-main-img.png", :alt => "Ruby Logo") %>
 							</div><!--cmp-info end-->
 						</div>
 						<div class="col-lg-6">
 							<div class="sign_up-sec">
-                <div class="sign-title">
-                    <h3>Sign Up</h3>
-                <span>
-                    Please fill in this form to create account.
-                </span>
-                </div>
-
-                <br>
+								<div class="sign-title">
+									<h3><%= t('label.sign_up') %></h3>
+									<span>
+										<%= t('message.sign_up_fill_form') %>
+									</span>
+								</div>
+               	<br>
 								<div class="sign_in_sec current" id="tab-2">
 									<div class="dff-tab current" id="tab-3">
 										<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 											<%= render "devise/shared/error_messages", resource: resource %>
-                      <div class="row">
-                        <div class="col-lg-12 no-pdd">
+                    <div class="row">
+                      <div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-                            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+                            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: t('input.email') %>
 														<i class="fa fa-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-                            <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
+                            <%= f.password_field :password, autocomplete: "new-password", placeholder: t('input.password') %>
 														<i class="fa fa-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-                          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Password" %>
+                          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('input.confirm_password') %>
 													<i class="fa fa-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
-                          <%= f.submit "Sign up", class: "sign_in_sec_form_button" %>
+                          <%= f.submit t('label.sign_up'), class: "sign_in_sec_form_button" %>
 												</div>
 											</div>
 										<% end %>
