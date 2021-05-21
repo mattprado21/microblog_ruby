@@ -1,30 +1,22 @@
 $(window).on("load", function() {
     "use strict";
     console.log("hello");
-    //  ============= POST PROJECT POPUP FUNCTION =========
-
-    $(".post_project").on("click", function(){
-        $(".post-popup.pst-pj").addClass("active");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".post-project > a").on("click", function(){
-        $(".post-popup.pst-pj").removeClass("active");
-        $(".wrapper").removeClass("overlay");
-        return false;
-    });
 
     //  ============= POST JOB POPUP FUNCTION =========
+    
+    $('.edit-comment').on("click", function(e){
+        //prevent page from loading
+        e.preventDefault();
+        var element = $(this);
+        var commentId = element.attr("id");
+        var postId = element.attr("data-post_id");
+        var commentContent = element.attr("data-comment");
 
-    $(".post-jb").on("click", function(){
-        $(".post-popup.job_post").addClass("active");
-        $(".wrapper").addClass("overlay");
-        return false;
-    });
-    $(".post-project > a").on("click", function(){
-        $(".post-popup.job_post").removeClass("active");
-        $(".wrapper").removeClass("overlay");
-        return false;
+        $("#editCommentForm").attr("action", "/posts/" + postId + "/comments/" + commentId);
+        $("#commentId").val(commentId);
+        $("#commentContent").val(commentContent);
+        $("#submitComment").prop('id', 'submitEditedComment');
+        $('#editComments').modal('show');
     });
 
     //  ============= SIGNIN CONTROL FUNCTION =========
@@ -181,19 +173,6 @@ $(window).on("load", function() {
     $(".close-box").on("click", function(){
         $("#question-box").removeClass("open");
         $(".wrapper").removeClass("overlay");
-        return false;
-    });
-
-
-    //  ============== ChatBox ============== 
-
-
-    $(".chat-mg").on("click", function(){
-        $(this).next(".conversation-box").toggleClass("active");
-        return false;
-    });
-    $(".close-chat").on("click", function(){
-        $(".conversation-box").removeClass("active");
         return false;
     });
 

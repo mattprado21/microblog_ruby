@@ -59,7 +59,7 @@
                                                             <h3><%= "Raymart Prado" %></h3>
                                                             <span>
                                                                 <%= image_tag("clock.png", :alt => "Clock") %>
-                                                                <%= post.updated_at.strftime("%A, %B %e, %Y") %>
+                                                                Posted <%= time_ago_in_words(post.created_at) %> ago.
                                                             </span>
                                                         </div>
                                                     </div>
@@ -121,10 +121,14 @@
                                                                     <div class="comment">
                                                                         <h3>
                                                                             <%= comment.user.email %>
+                                                                            <div class="ed-opts">
+                                                                                <i id="<%= comment.id %>" data-post_id="<%= comment.post_id %>" data-comment="<%= comment.comment %>" class="fa fa-edit edit-comment"></i>
+                                                                                <%= link_to '<i class="fa fa-trash"></i>'.html_safe, post_comment_path(comment.post_id, comment.id), method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
+                                                                            </div>
                                                                         </h3>
                                                                         <span>
-                                                                            <img src="images/clock.png" alt=""> 
-                                                                            <%= comment.updated_at.strftime("%A, %B %e, %Y") %>
+                                                                            <img src="images/clock.png" alt="">
+                                                                            <%= time_ago_in_words(comment.created_at) %> ago.
                                                                         </span>
                                                                         <p>
                                                                             <%= comment.comment %>
@@ -140,7 +144,7 @@
                                                         <img src="http://via.placeholder.com/40x40" alt="">
                                                     </div>
                                                     <div class="comment_box">
-                                                        <%= form_with model: @post do |f| %>
+                                                        <%= form_with(url: post_comments_path(post)) do |f| %>
                                                             <%= f.text_field :comment, placeholder: 'Post a comment' %>
                                                             <%= f.submit 'Send', class: "send_button" %>
                                                         <% end %>
@@ -163,36 +167,4 @@
     </main>
 </div><!--theme-layout end-->
 
-<div class="post-popup job_post">
-    <div class="post-project">
-        <h3>Edit Post</h3>
-        <div class="post-project-fields">
-            <%= form_with model: @post do |form| %>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <%=
-                            form.text_area :content,
-                            class: "form-control",
-                            placeholder: "What\'s Happening?",
-                            maxlength: 140,
-                            rows: 3,
-                            cols: 100,
-                            required: false
-                        %>
-                        <small class="form-text text-muted" style="float:left;" >
-                            <span id="remainingCharacter">140</span>
-                            Character(s) Remaining
-                        </small><br>
-                    </div>
-                    <div class="col-lg-12">
-                        <ul>
-                            <li><%= form.submit "Create Post", class:"btn btn-primary" %></li>
-                            <li><a href="#" title="">Cancel</a></li>
-                        </ul>
-                    </div>
-                </div>
-            <% end %>
-        </div><!--post-project-fields end-->
-        <a href="#" title=""><i class="fa fa-times-circle-o"></i></a>
-    </div><!--post-project end-->
-</div><!--post-project-popup end-->
+<%= render 'layouts/forms/edit_comment_modal' %>
