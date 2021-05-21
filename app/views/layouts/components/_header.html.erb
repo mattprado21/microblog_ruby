@@ -7,7 +7,7 @@
         </div><!--logo end-->
         <div class="search-bar">
             <form>
-            <input type="text" name="search" placeholder="Search...">
+            <input type="text" name="search" placeholder=<%= t('label.search') %>>
             <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div><!--search-bar end-->
@@ -18,18 +18,17 @@
                 <i class="fa fa-sort-down"></i>
             </div>
             <div class="user-account-settingss">
-            <h3>Setting</h3>
             <ul class="us-links">
-                <li><a href="profile-account-setting.html" title="">Account Setting</a></li>
+                <li><a href="profile-account-setting.html" title=""><%= t('label.account_setting') %></a></li>
             </ul>
             <h3 class="tc">
-                <%= link_to("Sign Out", destroy_user_session_path, :method => 'delete') %>
+                <%= link_to(t('label.sign_out'), destroy_user_session_path, :method => 'delete') %>
             </h3>
             </div><!--user-account-settingss end-->
         </div>
         <div class="user-account" style="width:120px">
             <div class="user-info">
-            <%= link_to("Home", root_path) %>
+            <%= link_to(t('label.home'), root_path) %>
             </div>
         </div>
         </div><!--header-data end-->

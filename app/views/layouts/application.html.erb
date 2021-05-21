@@ -15,16 +15,18 @@
       <%= render 'layouts/components/header' %>
     <% end %>
 
-    <% if notice %>
-    <br><br>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-    <br><br>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
+    <div class="wrapper">
+      <% if notice %>
+      <br><br>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+      <br><br>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
     <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

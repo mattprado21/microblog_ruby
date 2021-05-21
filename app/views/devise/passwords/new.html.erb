@@ -1,16 +1,44 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<main style="padding:30px">
+  <div class="main-section">
+    <div class="container">
+      <div class="main-section-data">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 pd-left-none no-pd">
+            </div>
+            <div class="col-lg-6 col-md-8 no-pd">
+                <div class="main-ws-sec">
+                    <div class="posts-section">
+                        <div class="post-project">
+                            <h3><%= t('label.forgot_password') %></h3>
+                            <div class="post-project-fields">
+                              <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                                <div class="row">
+                                  <%= render "devise/shared/error_messages", resource: resource %>
+                                  <div class="col-lg-12">
+                                    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                                      <br>
+                                  </div>
+                                  <div class="col-lg-12" style="text-align:center;">
+                                    <ul>
+                                      <li>
+                                        <%= f.submit t('message.send_reset_password'), class:"btn btn-primary", style: "color:white; margin-bottom:0px;" %>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              <% end %>
+                              <%= render "devise/shared/links" %>
+                            </div><!--post-project-fields end-->
+                        </div><!--post-project end-->
+                    </div><!--posts-section end-->
+                </div><!--main-ws-sec end-->
+            </div>
+            <div class="col-lg-3 pd-right-none no-pd">
+                <div class="right-sidebar">
+                </div><!--right-sidebar end-->
+            </div>
+        </div>
+      </div><!-- main-section-data end-->
+    </div> 
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</main>
