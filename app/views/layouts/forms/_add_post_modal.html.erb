@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Create Post</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+        <%= form_with model: @post do |form| %>
+            <div class="modal-body">
+                <div class="form-group">
+                    <%=
+                        form.text_area :content,
+                        class: "form-control",
+                        placeholder: t('input.whats_happening'),
+                        maxlength: 140,
+                        rows: 3,
+                        cols: 100,
+                        required: false
+                    %>
+                </div>
+                <div class="form-group">
+                    <img id="img_prev" min-width=500 height=auto src="#" alt="your image" class="img-thumbnail hidden" style="margin-bottom: 10px;"/>
+                </div>
+                <div class="form-group">
+                    <%=
+                        form.file_field :image,
+                        id: "postImage",
+                        required: false
+                    %>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('label.close') %></button>
+                <%= form.submit t('label.create_post'), class:"btn btn-primary", id: "submitPost" %>
+            </div>
+      <% end %>
+    </div>
+  </div>
+</div>

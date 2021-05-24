@@ -56,6 +56,11 @@ en:
     new_password: "New Password"
     confirm_new_password: "Confirm new password"
     search: "Search..."
+    close: "Close"
+    save_changes: "Save changes"
+    edit_post: "Edit Post"
+    update_post: "Update Post"
+    back: "Back"
   message:
     rails_microblog_text: "Ruby on Rails Microblog."
     rails_microblog_sub_text: "A simple social media website."

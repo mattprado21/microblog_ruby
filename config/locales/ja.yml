@@ -25,6 +25,11 @@ ja:
     new_password: "新しいパスワード"
     confirm_new_password: "新しいパスワードの確認"
     search: "検索..."
+    close: "閉じる"
+    save_changes: "変更の保存"
+    edit_post: "ポストの編集"
+    update_post: "記事の更新"
+    back: "戻る"
   message:
     rails_microblog_text: "Ruby on Rails Microblog."
     rails_microblog_sub_text: "シンプルなソーシャルメディアサイトです。"

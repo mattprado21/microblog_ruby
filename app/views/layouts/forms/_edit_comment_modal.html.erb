@@ -14,8 +14,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <%= f.submit 'Save changes', id: "submitEditedComment", class: "btn btn-primary" %>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('label.close') %></button>
+            <%= f.submit t('label.save_changes'), id: "submitEditedComment", class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>

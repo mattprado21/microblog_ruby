@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     @post = Post.new(
       user_id: current_user.id,
       content: params[:content],
+      image: params[:image],
       deleted: false,
     )
 
@@ -28,6 +29,7 @@ class PostsController < ApplicationController
       if @post.update(
         user_id: current_user.id,
         content: params[:post][:content],
+        image: params[:post][:image],
         deleted: false
       )
         format.html { redirect_to root_path, notice: 'Post was successfully updated.' }

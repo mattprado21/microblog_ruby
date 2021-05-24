@@ -38,16 +38,13 @@
                             <div class="main-ws-sec">
                                 <div class="posts-section">
                                     <div class="post-topbar">
-                                        <%= form_with model: @post do |form| %>
-                                            <div class="row">
-                                                <%= render 'layouts/forms/post', form: form %>
-                                                <div class="col-lg-12">
-                                                    <ul>
-                                                        <%= form.submit t('label.create_post'), class:"btn btn-primary float-right" %>
-                                                    </ul>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <ul>
+                                                    <button class="btn btn-primary float-right" id="createPostBtn"> <%= t('label.create_post') %> </button>
+                                                </ul>
                                             </div>
-                                        <% end %>
+                                        </div>
                                     </div><!--post-topbar end-->
                                     <% @posts.each do |post| %>
                                         <div class="post-bar">
@@ -69,9 +66,12 @@
                                                     </div>
                                                 </div>
                                                 <%= link_to post_path(post.id) do %>
-                                                    <div class="job_descp">
+                                                    <div class="post_content">
                                                         <p>
                                                             <%= post.content %>
+                                                            <% if post.image.attached? %>
+                                                                <%= image_tag(post.image) %>
+                                                            <% end %>
                                                             <!-- <a href="#" title="">view more</a> -->
                                                         </p>
                                                     </div>
@@ -168,3 +168,4 @@
 </div><!--theme-layout end-->
 
 <%= render 'layouts/forms/edit_comment_modal' %>
+<%= render 'layouts/forms/add_post_modal' %>

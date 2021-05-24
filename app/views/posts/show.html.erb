@@ -27,9 +27,12 @@
                                             </div>
                                         </div>
                                         <%= link_to root_path do %>
-                                            <div class="job_descp">
+                                            <div class="post_content">
                                                 <p>
                                                     <%= @post.content %>
+                                                    <% if @post.image.attached? %>
+                                                        <%= image_tag(@post.image) %>
+                                                    <% end %>
                                                     <!-- <a href="#" title="">view more</a> -->
                                                 </p>
                                             </div>
