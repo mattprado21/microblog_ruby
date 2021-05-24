@@ -1,8 +1,7 @@
 $(window).on("load", function() {
     "use strict";
-    console.log("hello");
 
-    //  ============= POST JOB POPUP FUNCTION =========
+    //  ============= EDIT POST COMMENT FUNCTION =========
     
     $('.edit-comment').on("click", function(e){
         //prevent page from loading
@@ -19,27 +18,33 @@ $(window).on("load", function() {
         $('#editComments').modal('show');
     });
 
-    //  ============= SIGNIN CONTROL FUNCTION =========
-
-    $('.sign-control li').on("click", function(){
-        var tab_id = $(this).attr('data-tab');
-        $('.sign-control li').removeClass('current');
-        $('.sign_in_sec').removeClass('current');
-        $(this).addClass('current animated fadeIn');
-        $("#"+tab_id).addClass('current animated fadeIn');
-        return false;
+    
+    // ============== CREATE POST ==================
+    $('#createPostBtn').on("click", function(e){
+        //prevent page from loading
+        e.preventDefault();
+        $('#createPost').modal('show');
     });
 
-    //  ============= SIGNIN TAB FUNCTIONALITY =========
-
-    $('.signup-tab ul li').on("click", function(){
-        var tab_id = $(this).attr('data-tab');
-        $('.signup-tab ul li').removeClass('current');
-        $('.dff-tab').removeClass('current');
-        $(this).addClass('current animated fadeIn');
-        $("#"+tab_id).addClass('current animated fadeIn');
-        return false;
-    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+    
+          reader.onload = function (e) {
+            // for edit post
+            if ($('#img_prev_edit').length) {
+                $('#img_prev_edit').remove();
+            }
+            $('#img_prev').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+    
+      $("#postImage").change(function() {
+        $('#img_prev').removeClass('hidden');
+        readURL(this);
+      });
 
     //  ============= SIGNIN SWITCH TAB FUNCTIONALITY =========
 

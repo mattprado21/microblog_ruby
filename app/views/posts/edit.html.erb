@@ -9,7 +9,7 @@
                         <div class="main-ws-sec">
                             <div class="posts-section">
                                 <div class="post-project">
-                                    <h3>Edit Post</h3>
+                                    <h3><%= t('label.edit_post') %></h3>
                                     <div class="post-project-fields">
                                         <%= form_with model: @post do |form| %>
                                             <div class="row">
@@ -21,8 +21,8 @@
                                                 <%= render 'layouts/forms/post', form: form %>
                                                 <div class="col-lg-12">
                                                     <ul>
-                                                        <li><%= form.submit "Update Post", class:"btn btn-primary", style: "margin-bottom:0px;" %></li>
-                                                        <li><a href="#" title="">Back</a></li>
+                                                        <li><%= form.submit t('label.update_post'), class:"btn btn-primary", style: "margin-bottom:0px;" %></li>
+                                                        <li><a href="#" title=""><%= t('label.back') %></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
