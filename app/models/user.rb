@@ -13,9 +13,11 @@ class User < ApplicationRecord
     # # Enums
     # enum gender: {male: 0, female: 1}
   
-    # # validations
+    # validations
+    validates :first_name, :last_name, presence: true
+    validates :first_name, :last_name, length: { in: 2..20 }
+
     # has_secure_password
-  
     # validates :username, :email, :password, :first_name, :last_name, :gender, :birthdate, presence: true
     # validates :username, :email, uniqueness: true
     # validates :username, length: { in: 6..20 }
@@ -23,12 +25,12 @@ class User < ApplicationRecord
     # validates :email, format: { with: /\A.+@.+$\Z/ },
     # validates :password, length: { in: 6..20 }
     # validates :gender, inclusion: { in: gender.values }
-    # validates :age_validator
-    
-    # def age_validator
-    #   if birthdate.present? && birthdate > 18.years.ago.to_d
-    #     errors.add(:birthdate, 'You should be over 18 years old.')
-    #   end
-    # end
+    validate :age_validator
+
+    def age_validator
+      if birthdate.present? && birthdate > 18.years.ago.to_date
+        errors.add(:birthdate, 'You should be over 18 years old.')
+      end
+    end
   end
   

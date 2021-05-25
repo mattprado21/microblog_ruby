@@ -14,8 +14,8 @@
                                             </div>
                                         </div><!--username-dt end-->
                                         <div class="user-specs">
-                                            <h6><%= "Raymart Prado" %></h6>
-                                            <span>This is my bio.</span>
+                                            <h6><%= current_user.first_name + " " + current_user.last_name %></h6>
+                                            <span><%= current_user.bio %> </span>
                                         </div>
                                     </div><!--user-profile end-->
                                     <ul class="user-fw-status">
@@ -53,7 +53,7 @@
                                                     <div class="usy-dt">
                                                         <img src="http://via.placeholder.com/50x50" alt="">
                                                         <div class="usy-name">
-                                                            <h3><%= "Raymart Prado" %></h3>
+                                                            <h3><%= post.user.first_name + " " + post.user.last_name %></h3>
                                                             <span>
                                                                 <%= image_tag("clock.png", :alt => "Clock") %>
                                                                 <%= time_ago_in_words(post.created_at) %>

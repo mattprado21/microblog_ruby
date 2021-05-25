@@ -4,6 +4,8 @@ ja:
     password: "パスワード"
     confirm_password: "パスワードの再入力"
     whats_happening: "何が起こっているのか？"
+    first_name: "名前"
+    last_name: "苗字"
   label:
     sign_up: "サインアップ"
     sign_in: "サインイン"
@@ -30,6 +32,10 @@ ja:
     edit_post: "ポストの編集"
     update_post: "記事の更新"
     back: "戻る"
+    date_of_birth: "生まれる日"
+    bio: "バイオ"
+    current_password: "現在のパスワード"
+    update: "更新情報"
   message:
     rails_microblog_text: "Ruby on Rails Microblog."
     rails_microblog_sub_text: "シンプルなソーシャルメディアサイトです。"

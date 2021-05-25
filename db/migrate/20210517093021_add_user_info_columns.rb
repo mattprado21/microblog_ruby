@@ -5,6 +5,5 @@ class AddUserInfoColumns < ActiveRecord::Migration[6.1]
     add_column :users, :gender, :string
     add_column :users, :birthdate, :date
     add_column :users, :bio, :string
-    add_column :users, :profile_image, :string
   end
 end
