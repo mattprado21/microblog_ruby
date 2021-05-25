@@ -24,36 +24,48 @@
 										<%= t('message.sign_up_fill_form') %>
 									</span>
 								</div>
-               	<br>
+               					<br>
 								<div class="sign_in_sec current" id="tab-2">
 									<div class="dff-tab current" id="tab-3">
-										<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-											<%= render "devise/shared/error_messages", resource: resource %>
-                    <div class="row">
-                      <div class="col-lg-12 no-pdd">
+										<%= render "devise/shared/error_messages", resource: resource %>
+										<div class="row">
+											<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-                            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: t('input.email') %>
+														<%= f.text_field :first_name, autofocus: true, placeholder: t('input.first_name') %>
 														<i class="fa fa-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-                            <%= f.password_field :password, autocomplete: "new-password", placeholder: t('input.password') %>
+														<%= f.text_field :last_name, placeholder: t('input.last_name') %>
+														<i class="fa fa-user"></i>
+													</div>
+												</div>
+												<div class="col-lg-12 no-pdd">
+													<div class="sn-field">
+														<%= f.email_field :email, autocomplete: "email", placeholder: t('input.email') %>
+														<i class="fa fa-envelope"></i>
+													</div>
+												</div>
+												<div class="col-lg-12 no-pdd">
+													<div class="sn-field">
+														<%= f.password_field :password, autocomplete: "new-password", placeholder: t('input.password') %>
 														<i class="fa fa-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-                          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('input.confirm_password') %>
-													<i class="fa fa-lock"></i>
+														<%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('input.confirm_password') %>
+														<i class="fa fa-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
-                          <%= f.submit t('label.sign_up'), class: "sign_in_sec_form_button" %>
+													<%= f.submit t('label.sign_up'), class: "sign_in_sec_form_button" %>
 												</div>
-											</div>
-										<% end %>
-                    <%= render "devise/shared/links" %>
+											<% end %>
+										</div>
+										<%= render "devise/shared/links" %>
 									</div><!--dff-tab end-->
 								</div>		
 							</div><!--login-sec end-->

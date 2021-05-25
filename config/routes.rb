@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   
   get 'home/index', to: 'home#index'
   post '/home/index', to: 'posts#create'
-  
+  patch '/users/edit', to: 'users#update'
+
   resources :posts, only: [:show, :edit, :update, :destroy] do
     resources :likes
     resources :comments

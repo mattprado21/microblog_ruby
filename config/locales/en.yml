@@ -35,6 +35,8 @@ en:
     password: "Password"
     confirm_password: "Confirm Password"
     whats_happening: "What's Happening?"
+    first_name: "First name"
+    last_name: "Last name"
   label:
     sign_up: "Sign Up"
     sign_in: "Sign In"
@@ -61,6 +63,10 @@ en:
     edit_post: "Edit Post"
     update_post: "Update Post"
     back: "Back"
+    date_of_birth: "Date of Birth"
+    bio: "Bio"
+    current_password: "Current Password"
+    update: "Update"
   message:
     rails_microblog_text: "Ruby on Rails Microblog."
     rails_microblog_sub_text: "A simple social media website."

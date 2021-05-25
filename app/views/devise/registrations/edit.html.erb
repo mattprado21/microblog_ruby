@@ -1,43 +1,109 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section class="profile-account-setting">
+  <div class="container">
+    <div class="account-tabs-setting">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="acc-leftbar">
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active show" id="nav-password-tab" data-toggle="tab" href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false"><i class="fa fa-cogs"></i>Account Setting</a>
+                <%= link_to("<i class='fa fa-sign-out'></i>".html_safe + t('label.sign_out'), destroy_user_session_path, :method => 'delete', class: "nav-item nav-link") %>
+              </div>
+          </div><!--acc-leftbar end-->
+        </div>
+        <div class="col-lg-9">
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade active in" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
+              <div class="acc-setting">
+              <h3><%= t('label.account_setting') %></h3>
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <div class="cp-field">
+                  <%= render "devise/shared/error_messages", resource: resource %>
+                </div>
+                <div class="cp-field">
+                  <h5><%= t('label.first_name') %></h5>
+                  <div class="cpp-fiel">
+                    <%= f.text_field :first_name, placeholder: t('label.first_name') %>
+                    <i class="fa fa-user"></i>
+                  </div>
+                </div>
+                <div class="cp-field">
+                  <h5><%= t('label.last_name') %></h5>
+                  <div class="cpp-fiel">
+                    <%= f.text_field :last_name, placeholder: t('label.last_name') %>
+                    <i class="fa fa-user"></i>
+                  </div>
+                </div>
+                <div class="cp-field">
+                  <h5><%= t('label.date_of_birth') %></h5>
+                  <div class="cpp-fiel">
+                    <%= f.date_field :birthdate, placeholder: t('label.date_of_birth') %>
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                </div>
+                <div class="cp-field">
+                  <h5><%= t('label.bio') %></h5>
+                  <div class="cpp-fiel">
+                    <%= f.text_field :bio, placeholder: t('label.bio') %>
+                    <i class="fa fa-info-circle"></i>
+                  </div>
+                </div>
+                
+                <div class="cp-field">
+                  <h5><%= t('label.email') %></h5>
+                  <div class="cpp-fiel">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                    <i class="fa fa-envelope"></i>
+                  </div>
+                </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                <div class="cp-field">
+                  <h5><%= t('input.password') %></h5><i>(leave blank if you don't want to change it)</i>
+                  <div class="cpp-fiel">
+                    <%= f.password_field :password, autocomplete: "new-password" %>
+                    <i class="fa fa-lock"></i>
+                  </div>
+                  <% if @minimum_password_length %>
+                    <br />
+                    <em><%= @minimum_password_length %> characters minimum</em>
+                  <% end %>
+                </div>
+
+                <div class="cp-field">
+                  <h5><%= t('input.confirm_new_password') %></h5>
+                  <div class="cpp-fiel">
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+                    <i class="fa fa-lock"></i>
+                  </div>
+                </div>
+                
+                <div class="cp-field">
+                  <h5><%= t('label.current_password') %></h5><i>(we need your current password to confirm your changes)</i>
+                  <div class="cpp-fiel">
+                    <%= f.password_field :current_password, autocomplete: "current-password" %>
+                    <i class="fa fa-lock"></i>
+                  </div>
+                </div>
+                <!--
+                <h3>Cancel my account</h3>
+                <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+                -->
+                <div class="save-stngs pd2">
+                  <ul>
+                    <li>
+                      <button type="submit"><%= t('label.update') %></button>
+                    </li>
+                    <li><%= link_to "<button>#{t('label.back')}</button>".html_safe, :back %></li>
+                  </ul>
+                </div><!--save-stngs end-->
+              <% end %>
+            </div><!--acc-setting end-->
+          </div>
+        </div>
+      </div><!--row end-->
+    </div><!--account-tabs-setting end-->
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</section>
