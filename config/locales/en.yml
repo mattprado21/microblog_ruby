@@ -67,6 +67,9 @@ en:
     bio: "Bio"
     current_password: "Current Password"
     update: "Update"
+    update_image: "Update Image"
+    update_profile_image: "Update Profile Image"
+    profile_image: "Profile Image"
   message:
     rails_microblog_text: "Ruby on Rails Microblog."
     rails_microblog_sub_text: "A simple social media website."
@@ -74,3 +77,4 @@ en:
     send_reset_password: "Send me reset password instructions"
     resend_confirmation: "Resend confirmation instructions"
     change_your_password: "Change your password"
+    change_my_password: "Change my password"

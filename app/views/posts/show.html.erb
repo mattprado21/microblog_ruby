@@ -12,7 +12,11 @@
                                     <div class="post-bar no-margin">
                                         <div class="post_topbar">
                                             <div class="usy-dt">
-                                                <img src="http://via.placeholder.com/50x50" alt="">
+                                                <% if @post.user.profile_image.attached? %>
+                                                    <%= image_tag(@post.user.profile_image, width:"50", height:"50") %>
+                                                <% else %>
+                                                    <%= image_tag("default_profile.jpg", width:"50", height:"50") %>
+                                                <% end %>
                                                 <div class="usy-name">
                                                     <h3><%= @post.user.email %></h3>
                                                     <span>
@@ -103,7 +107,11 @@
                                         </div><!--comment-sec end-->
                                         <div class="post-comment">
                                             <div class="cm_img">
-                                                <img src="http://via.placeholder.com/40x40" alt="">
+                                                <% if current_user.profile_image.attached? %>
+                                                    <%= image_tag(current_user.profile_image, width:"40", height:"40") %>
+                                                <% else %>
+                                                    <%= image_tag("default_profile.jpg", width:"40", height:"40") %>
+                                                <% end %>
                                             </div>
                                             <div class="comment_box">
                                                 <%= form_with(url: post_comments_path(@post))do |f| %>

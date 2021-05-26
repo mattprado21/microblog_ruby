@@ -3,6 +3,7 @@
         <div class="header-data">
         <div class="logo">
             <a href="index.html" title="">
+                <%= image_tag("logo.png") %>
             </a>
         </div><!--logo end-->
         <div class="search-bar">
@@ -11,10 +12,21 @@
             <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div><!--search-bar end-->
-        <div class="user-account" style="width:120px">
+        <nav>
+            <ul>
+                <li>
+                    <%= link_to("<span>#{image_tag("home_icon.png")}</span> #{t('label.home')}".html_safe, root_path) %>
+                </li>
+            </ul>
+        </nav><!--nav end-->
+        <div class="user-account" style="width:120px;">
             <div class="user-info">
-                <img src="http://via.placeholder.com/30x30" alt="">
-                <p> <%= current_user.first_name %> </p>
+                <% if current_user.profile_image.attached? %>
+                    <%= image_tag(current_user.profile_image, width:"30", height:"30") %>
+                <% else %>
+                    <%= image_tag("default_profile.jpg", width:"30", height:"30") %>
+                <% end %>
+                <p style="color:white;"> <%= current_user.first_name %> </p>
                 <i class="fa fa-sort-down"></i>
             </div>
             <div class="user-account-settingss">
@@ -27,11 +39,6 @@
                 <%= link_to(t('label.sign_out'), destroy_user_session_path, :method => 'delete') %>
             </h3>
             </div><!--user-account-settingss end-->
-        </div>
-        <div class="user-account" style="width:120px">
-            <div class="user-info">
-            <%= link_to(t('label.home'), root_path) %>
-            </div>
         </div>
         </div><!--header-data end-->
     </div>

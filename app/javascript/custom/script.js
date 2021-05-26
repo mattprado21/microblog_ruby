@@ -18,33 +18,49 @@ $(window).on("load", function() {
         $('#editComments').modal('show');
     });
 
-    
+    /**
+     * Image preview
+     * 
+     * @param {object} input 
+     */
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                // for edit post
+                if ($('#img_prev_edit').length) {
+                    $('#img_prev_edit').remove();
+                }
+                $('#img_prev').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
     // ============== CREATE POST ==================
     $('#createPostBtn').on("click", function(e){
         //prevent page from loading
         e.preventDefault();
         $('#createPost').modal('show');
     });
-
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
     
-          reader.onload = function (e) {
-            // for edit post
-            if ($('#img_prev_edit').length) {
-                $('#img_prev_edit').remove();
-            }
-            $('#img_prev').attr('src', e.target.result);
-          }
-          reader.readAsDataURL(input.files[0]);
-        }
-      }
-    
-      $("#postImage").change(function() {
+    $("#postImage").change(function() {
         $('#img_prev').removeClass('hidden');
         readURL(this);
-      });
+    });
+      
+    // ============== Update profile ==================
+    $('#updateProfileImageBtn').on("click", function(e){
+        //prevent page from loading
+        e.preventDefault();
+        $('#updateProfileImage').modal('show');
+    });
+
+    $("#profileImage").change(function() {
+        $('#img_prev').removeClass('hidden');
+        readURL(this);
+    });
 
     //  ============= SIGNIN SWITCH TAB FUNCTIONALITY =========
 
