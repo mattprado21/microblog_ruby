@@ -36,6 +36,9 @@ ja:
     bio: "バイオ"
     current_password: "現在のパスワード"
     update: "更新情報"
+    update_image: "更新イメージ"
+    update_profile_image: "プロフィール画像の更新"
+    profile_image: "プロフィール画像"
   message:
     rails_microblog_text: "Ruby on Rails Microblog."
     rails_microblog_sub_text: "シンプルなソーシャルメディアサイトです。"
@@ -43,3 +46,4 @@ ja:
     send_reset_password: "リセットパスワードの手順を送ってください"
     resend_confirmation: "再送確認の指示"
     change_your_password: "パスワードの変更"
+    change_my_password: "パスワードの変更"

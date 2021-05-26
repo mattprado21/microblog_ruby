@@ -2,12 +2,26 @@
   <div class="container">
     <div class="account-tabs-setting">
       <div class="row">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <div class="col-lg-3">
           <div class="acc-leftbar">
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active show" id="nav-password-tab" data-toggle="tab" href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false"><i class="fa fa-cogs"></i>Account Setting</a>
-                <%= link_to("<i class='fa fa-sign-out'></i>".html_safe + t('label.sign_out'), destroy_user_session_path, :method => 'delete', class: "nav-item nav-link") %>
-              </div>
+              <div class="user-profile">
+                  <div class="username-dt">
+                      <div class="usr-pic">
+                        <% if resource.profile_image.attached? %>
+                          <%= image_tag(resource.profile_image, width:"100", height:"110") %>
+                        <% else %>
+                          <%= image_tag("default_profile.jpg", width:"100", height:"110") %>
+                        <% end %>
+                      </div>
+                  </div><!--username-dt end-->
+                  <div class="user-specs" style="padding-bottom:0px; text-align:center;">
+                  </div>
+              </div><!--user-profile end-->
+              <a class="nav-item nav-link active show" id="nav-password-tab" data-toggle="tab" href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false"><i class="fa fa-cogs"></i><%= t('label.account_setting') %></a>
+              <%= link_to("<i class='fa fa-sign-out'></i>".html_safe + t('label.sign_out'), destroy_user_session_path, :method => 'delete', class: "nav-item nav-link") %>
+            </div>
           </div><!--acc-leftbar end-->
         </div>
         <div class="col-lg-9">
@@ -15,19 +29,25 @@
             <div class="tab-pane fade active in" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
               <div class="acc-setting">
               <h3><%= t('label.account_setting') %></h3>
-              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
                 <div class="cp-field">
                   <%= render "devise/shared/error_messages", resource: resource %>
                 </div>
                 <div class="cp-field">
-                  <h5><%= t('label.first_name') %></h5>
+                  <h5><%= t('label.profile_image') %></h5>
+                    <div class="cpp-fiel">
+                      <%= f.file_field :profile_image, class:"form-control", style:"padding:6px 40px;" %>
+                      <i class="fa fa-user"></i>
+                    </div>
+                </div>
+                <div class="cp-field">
+                  <h5><%= t('input.first_name') %></h5>
                   <div class="cpp-fiel">
                     <%= f.text_field :first_name, placeholder: t('label.first_name') %>
                     <i class="fa fa-user"></i>
                   </div>
                 </div>
                 <div class="cp-field">
-                  <h5><%= t('label.last_name') %></h5>
+                  <h5><%= t('input.last_name') %></h5>
                   <div class="cpp-fiel">
                     <%= f.text_field :last_name, placeholder: t('label.last_name') %>
                     <i class="fa fa-user"></i>
@@ -51,7 +71,7 @@
                 <div class="cp-field">
                   <h5><%= t('label.email') %></h5>
                   <div class="cpp-fiel">
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                    <%= f.email_field :email, autocomplete: "email" %>
                     <i class="fa fa-envelope"></i>
                   </div>
                 </div>
@@ -73,7 +93,7 @@
                 </div>
 
                 <div class="cp-field">
-                  <h5><%= t('input.confirm_new_password') %></h5>
+                  <h5><%= t('label.confirm_new_password') %></h5>
                   <div class="cpp-fiel">
                     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
                     <i class="fa fa-lock"></i>
@@ -99,11 +119,13 @@
                     <li><%= link_to "<button>#{t('label.back')}</button>".html_safe, :back %></li>
                   </ul>
                 </div><!--save-stngs end-->
-              <% end %>
             </div><!--acc-setting end-->
           </div>
         </div>
       </div><!--row end-->
+      <% end %>
     </div><!--account-tabs-setting end-->
   </div>
 </section>
+
+<%= render 'layouts/forms/update_profile_image_modal' %>

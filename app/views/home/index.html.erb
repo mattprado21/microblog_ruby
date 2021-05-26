@@ -10,7 +10,11 @@
                                     <div class="user-profile">
                                         <div class="username-dt">
                                             <div class="usr-pic">
-                                                <img src="http://via.placeholder.com/100x100" alt="">
+                                                <% if current_user.profile_image.attached? %>
+                                                    <%= image_tag(current_user.profile_image, width:"100", height:"110") %>
+                                                <% else %>
+                                                    <%= image_tag("default_profile.jpg", width:"100", height:"110") %>
+                                                <% end %>
                                             </div>
                                         </div><!--username-dt end-->
                                         <div class="user-specs">
@@ -36,22 +40,33 @@
                         </div>
                         <div class="col-lg-6 col-md-8 no-pd">
                             <div class="main-ws-sec">
-                                <div class="posts-section">
-                                    <div class="post-topbar">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <ul>
-                                                    <button class="btn btn-primary float-right" id="createPostBtn"> <%= t('label.create_post') %> </button>
-                                                </ul>
-                                            </div>
-                                        </div>
+                            <div class="post-topbar">
+                                        <div class="user-picy">
+											<% if current_user.profile_image.attached? %>
+                                                <%= image_tag(current_user.profile_image, width:"50", height:"50") %>
+                                            <% else %>
+                                                <%= image_tag("default_profile.jpg", width:"50", height:"50") %>
+                                            <% end %>
+										</div>
+                                        <div class="post-st">
+											<ul>
+												<li>
+                                                <button class="btn btn-primary float-right" id="createPostBtn"> <%= t('label.create_post') %> </button>
+                                                </li>
+											</ul>
+										</div><!--post-st end-->
                                     </div><!--post-topbar end-->
+                                <div class="posts-section">
                                     <% @posts.each do |post| %>
                                         <div class="post-bar">
                                             <div class="post-bar no-margin">
                                                 <div class="post_topbar">
                                                     <div class="usy-dt">
-                                                        <img src="http://via.placeholder.com/50x50" alt="">
+                                                        <% if post.user.profile_image.attached? %>
+                                                            <%= image_tag(post.user.profile_image, width:"50", height:"50") %>
+                                                        <% else %>
+                                                            <%= image_tag("default_profile.jpg", width:"50", height:"50") %>
+                                                        <% end %>
                                                         <div class="usy-name">
                                                             <h3><%= post.user.first_name + " " + post.user.last_name %></h3>
                                                             <span>
@@ -141,7 +156,11 @@
                                                 </div><!--comment-sec end-->
                                                 <div class="post-comment">
                                                     <div class="cm_img">
-                                                        <img src="http://via.placeholder.com/40x40" alt="">
+                                                        <% if current_user.profile_image.attached? %>
+                                                            <%= image_tag(current_user.profile_image, width:"40", height:"40") %>
+                                                        <% else %>
+                                                            <%= image_tag("default_profile.jpg", width:"40", height:"40") %>
+                                                        <% end %>
                                                     </div>
                                                     <div class="comment_box">
                                                         <%= form_with(url: post_comments_path(post)) do |f| %>

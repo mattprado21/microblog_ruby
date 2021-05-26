@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :configure_sign_up_params, only: [:sign_up]
-  before_action :set_user_info, only: [:update]
+  before_action :set_user_info, only: [:update_profile]
   
   def index
   end
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def edit
     
   end
-  def update
+  def update_profile
     if @user.update(
       first_name: params[:first_name],
       last_name: params[:last_name],
