@@ -33,6 +33,7 @@ gem 'font-awesome-rails'
 gem 'popper_js', '~> 2.9.2'
 gem 'rails-i18n'
 gem 'image_processing'
+gem 'will_paginate'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

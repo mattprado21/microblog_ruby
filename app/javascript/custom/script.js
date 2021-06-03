@@ -64,13 +64,17 @@ $(window).on("load", function() {
 
     //  ============= SIGNIN SWITCH TAB FUNCTIONALITY =========
 
-    $('.tab-feed ul li').on("click", function(){
-        var tab_id = $(this).attr('data-tab');
-        $('.tab-feed ul li').removeClass('active');
-        $('.product-feed-tab').removeClass('current');
-        $(this).addClass('active animated fadeIn');
-        $("#"+tab_id).addClass('current animated fadeIn');
-        return false;
+    $(document).ready(function() {
+        if ($('.pagination').length) {
+          $(window).scroll(function() {
+            var url = $('.pagination .next_page').attr('href');
+            if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+              $('.pagination').text("Please Wait...");
+              return $.getScript(url);
+            }
+          });
+          return $(window).scroll();
+        }
     });
 
     //  ============= COVER GAP FUNCTION =========
