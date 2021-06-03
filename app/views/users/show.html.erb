@@ -7,22 +7,25 @@
                         <div class="col-lg-3 col-md-4 pd-left-none no-pd">
                             <div class="main-left-sidebar no-margin">
                                 <div class="user-data full-width">
+                                    <% @user ||= current_user %>
                                     <div class="user-profile">
                                         <div class="username-dt">
                                             <div class="usr-pic">
-                                                <% if current_user.profile_image.attached? %>
-                                                    <%= image_tag(current_user.profile_image, width:"100", height:"110") %>
+                                                <% if @user.profile_image.attached? %>
+                                                    <%= image_tag(@user.profile_image, width:"100", height:"110") %>
                                                 <% else %>
                                                     <%= image_tag("default_profile.jpg", width:"100", height:"110") %>
                                                 <% end %>
                                             </div>
                                         </div><!--username-dt end-->
                                         <div class="user-specs">
-                                            <h6><%= current_user.first_name + " " + current_user.last_name %></h6>
-                                            <span><%= current_user.bio %> </span>
+                                            <h6><%= @user.first_name + " " + @user.last_name %></h6>
+                                            <span><%= @user.bio %> </span>
                                         </div>
                                     </div><!--user-profile end-->
-                                    <% @user ||= current_user %>
+                                    <% if current_user.id != @user.id %>
+                                        <%= render 'layouts/forms/follow_form' %>
+                                    <% end %>
                                     <ul class="user-fw-status">
                                         <li>
                                             <a href="<%= following_user_path(@user) %>">
@@ -45,7 +48,7 @@
                         </div>
                         <div class="col-lg-6 col-md-8 no-pd">
                             <div class="main-ws-sec">
-                                <% if !(params.has_key?(:search))%>
+                                <% if current_user.id == @user.id %>
                                     <div class="post-topbar">
                                         <div class="user-picy">
                                             <% if current_user.profile_image.attached? %>
@@ -62,46 +65,12 @@
                                             </ul>
                                         </div><!--post-st end-->
                                     </div><!--post-topbar end-->
+                                <% else %>
+                                    <div class="main-ws-sec" style="padding:10px; font-size:1.5rem;">
+                                        <h3> <%= @user.first_name + " " + t('label.posts') %></h3>
+                                    </div>
                                 <% end %>
                                 <div class="posts-section">
-                                    <% if (params.has_key?(:search))%>
-                                        <div class="main-ws-sec" style="padding:10px; font-size:1.5rem;">
-                                            <h3> <%= t('label.people') %></h3>
-                                        </div>
-                                        <% if @users.any? %>
-                                            <% @users.each do |user| %>
-                                                <div class="post-topbar" style="border-top:0px;">
-                                                    <div class="usy-dt">
-                                                        <% if user.profile_image.attached? %>
-                                                            <%= image_tag(user.profile_image, width:"50", height:"50") %>
-                                                        <% else %>
-                                                            <%= image_tag("default_profile.jpg", width:"50", height:"50") %>
-                                                        <% end %>
-                                                        <div class="usy-name">
-                                                            <h3 style="padding:10px;">
-                                                                <%= user.first_name + " " + user.last_name %>
-                                                            </h3>
-                                                        </div>
-                                                    </div>
-                                                    <div class="post-st">
-                                                        <ul>
-                                                            <li>
-                                                                <%= button_to t('label.view_profile'), user_path(user.id), :method => "get", class: "btn btn-primary float-right" %>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!--post-st end-->
-                                                </div><!--post-topbar end-->
-                                            <% end %>
-                                            <%= will_paginate @users %>
-                                        <% else %>
-                                            <div class="main-ws-sec" style="text-align:center;">
-                                                <h3> <%= t('message.no_users_found') %> </h3>
-                                            </div>
-                                        <% end %>
-                                        <div class="main-ws-sec" style="padding:10px; font-size:1.5rem;">
-                                            <h3> <%= t('label.posts') %></h3>
-                                        </div>
-                                    <% end %>
                                     <% if @posts.any? %>
                                         <div id="posts">
                                             <%= render 'layouts/components/post' %>

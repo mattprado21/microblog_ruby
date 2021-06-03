@@ -1,0 +1,7 @@
+$('#posts').append('<%= escape_javascript render "layouts/components/post" %>');
+<% if @posts.next_page %>
+    $('.pagination').replaceWith('<%= escape_javascript will_paginate(@posts) %>');
+<% else %>
+    $('#posts').append('<div style="text-align:center"><%= t("messsage.no_more_posts") %></div>');
+    $('.pagination').remove();
+<% end %>
