@@ -35,6 +35,7 @@ class User < ApplicationRecord
     # validations
     validates :first_name, :last_name, presence: true
     validates :first_name, :last_name, length: { in: 2..20 }
+    validate :age_validator
 
     # has_secure_password
     # validates :username, :email, :password, :first_name, :last_name, :gender, :birthdate, presence: true
@@ -44,11 +45,11 @@ class User < ApplicationRecord
     # validates :email, format: { with: /\A.+@.+$\Z/ },
     # validates :password, length: { in: 6..20 }
     # validates :gender, inclusion: { in: gender.values }
-    validate :age_validator
 
     # Pagination
     self.per_page = 5
     
+    # Search users
     def self.search(search)
       # Title is for the above case, the OP incorrectly had 'name'
       where("first_name LIKE ? OR last_name LIKE ?", "%#{search}%", "%#{search}%")
@@ -58,11 +59,13 @@ class User < ApplicationRecord
     def follow(other_user)
       following << other_user
     end
+
     # Unfollows a user.
     def unfollow(other_user)
       following.delete(other_user)
     end
-      # Returns true if the current user is following the otheruser.
+
+    # Returns true if the current user is following the otheruser.
     def following?(other_user)
       following.include?(other_user)
     end

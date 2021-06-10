@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy, :repost, :share_post, :show, :share, :edit]
   
   def index
   end
@@ -16,9 +16,8 @@ class PostsController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
   def show
-    @post = Post.includes(:user).find(params[:id])
   end
   
   def edit
@@ -41,12 +40,36 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    respond_to do |format|
-      if @post.update(
-        deleted: true
+    # respond_to do |format|
+    #   if @post.update(
+    #     deleted: true
+    #   )
+    #     format.html { redirect_to root_path, notice: 'Post was successfully deleted.' }
+    #     format.json { head :no_content }
+    #   end
+    # end
+    if @post.update(
+      deleted: true
+    )
+      redirect_to root_path
+    end
+  end
+  
+  # share post modal
+  def share
+  end
+
+  def repost
+    if @post
+      @post = Post.new(
+        user_id: current_user.id,
+        content: params[:content],
+        post_id: @post.id,
+        deleted: false,
       )
-        format.html { redirect_to root_path, notice: 'Post was successfully deleted.' }
-        format.json { head :no_content }
+
+      if @post.save
+        redirect_to root_path
       end
     end
   end
@@ -54,6 +77,6 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.includes(:user).find(params[:id])
     end
 end
