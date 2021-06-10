@@ -25,10 +25,12 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="ed-opts">
-                                                <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_post_path(@post.id) %>
-                                                <%= link_to '<i class="fa fa-trash"></i>'.html_safe, @post, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
-                                            </div>
+                                            <% if current_user.id == @post.user_id %>
+                                                <div class="ed-opts">
+                                                    <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_post_path(@post.id) %>
+                                                    <%= link_to '<i class="fa fa-trash"></i>'.html_safe, @post, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
+                                                </div>
+                                            <% end %>
                                         </div>
                                         <%= link_to root_path do %>
                                             <div class="post_content">

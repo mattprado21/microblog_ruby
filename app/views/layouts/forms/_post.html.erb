@@ -4,21 +4,24 @@
         class: "form-control",
         placeholder: t('input.whats_happening'),
         maxlength: 140,
-        rows: 3,
+        rows: 2,
         cols: 100,
-        required: false
+        required: false,
+        style: "border: none;height:auto;"
     %>
     
-    <img id="img_prev" min-width=500 height=auto src="#" alt="your image" class="img-thumbnail hidden"/>
-    <% if @post.image.attached? %>
-        <%= image_tag(@post.image, id:"img_prev_edit", class:"img-thumbnail", width:"500", height:"auto") %>
+    <% if !@post.share %>
+        <img id="img_prev" min-width=500 height=auto src="#" alt="your image" class="img-thumbnail hidden"/>
+        <% if @post.image.attached? %>
+            <%= image_tag(@post.image, id:"img_prev_edit", class:"img-thumbnail", width:"500", height:"auto") %>
+        <% end %>
+        <%=
+            form.file_field :image,
+            id: "postImage",
+            required: false,
+            style: "border:0px; padding:0px; margin-top:10px;"
+        %>
     <% end %>
-    <%=
-        form.file_field :image,
-        id: "postImage",
-        required: false,
-        style: "border:0px; padding:0px; margin-top:10px;"
-    %>
     <!--<small class="form-text text-muted" style="float:left;" >
         <span id="remainingCharacter">140</span>
         Character(s) Remaining

@@ -6,6 +6,7 @@ ja:
     whats_happening: "何が起こっているのか？"
     first_name: "名前"
     last_name: "苗字"
+    say_something_about: "これについて何か言ってください。"
   label:
     sign_up: "サインアップ"
     sign_in: "サインイン"
@@ -44,6 +45,8 @@ ja:
     posts: "ポスト"
     edit_profile: "プロフィール編集"
     people: "人々"
+    share: "シェア"
+    share_post: "シェアポスト"
   message:
     rails_microblog_text: "Ruby on Rails Microblog."
     rails_microblog_sub_text: "シンプルなソーシャルメディアサイトです。"

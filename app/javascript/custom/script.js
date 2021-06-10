@@ -62,8 +62,7 @@ $(window).on("load", function() {
         readURL(this);
     });
 
-    //  ============= SIGNIN SWITCH TAB FUNCTIONALITY =========
-
+    //  ============= INFINITE SCROLLING =========
     $(document).ready(function() {
         if ($('.pagination').length) {
           $(window).scroll(function() {
@@ -75,6 +74,13 @@ $(window).on("load", function() {
           });
           return $(window).scroll();
         }
+    });
+    
+    // ============== CREATE POST ==================
+    $('.share-post').on("click", function(e){
+        //prevent page from loading
+        e.preventDefault();
+        $('#sharePost').modal('show');
     });
 
     //  ============= COVER GAP FUNCTION =========

@@ -16,13 +16,15 @@
                         </span>
                     </div>
                 </div>
-                <div class="ed-opts">
-                    <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_post_path(post.id) %>
-                    <%= link_to '<i class="fa fa-trash"></i>'.html_safe, post, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
-                </div>
+                <% if current_user.id == post.user_id %>
+                    <div class="ed-opts">
+                        <%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_post_path(post.id) %>
+                        <%= link_to '<i class="fa fa-trash"></i>'.html_safe, post, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
+                    </div>
+                <% end %>
             </div>
             <%= link_to post_path(post.id) do %>
-                <div class="post_content">
+                <div class="post_content" style="border-bottom:<%= post.share ? '0px' : ''%>">
                     <p>
                         <%= post.content %>
                         <% if post.image.attached? %>
@@ -30,6 +32,38 @@
                         <% end %>
                         <!-- <a href="#" title="">view more</a> -->
                     </p>
+                </div>
+            <% end %>
+            <% if post.share %>
+                <div style="margin:15px;border-radius:5px;">
+                    <div class="post-bar no-margin" style="margin:10px;padding:5px;border:#dfdfdf 1px solid;">
+                        <div style="margin:10px;">
+                            <div class="usy-dt">
+                                <% if post.share.user.profile_image.attached? %>
+                                    <%= image_tag(post.share.user.profile_image, width:"50", height:"50") %>
+                                <% else %>
+                                    <%= image_tag("default_profile.jpg", width:"50", height:"50") %>
+                                <% end %>
+                                <div class="usy-name">
+                                    <h3><%= post.share.user.first_name + " " + post.share.user.last_name %></h3>
+                                    <span>
+                                        <%= image_tag("clock.png", :alt => "Clock") %>
+                                        <%= time_ago_in_words(post.share.created_at) %>
+                                    </span>
+                                </div>
+                            </div>
+                            <%= link_to root_path do %>
+                                <div class="post_content" style="border-bottom:0px;padding:0px;">
+                                    <p style="padding:5px 0px 5px 0px;">
+                                        <%= post.share.content %>
+                                    </p>
+                                    <% if post.share.image.attached? %>
+                                        <%= image_tag(post.share.image) %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div><!--post-bar end-->
                 </div>
             <% end %>
             <div class="job-status-bar">
@@ -61,6 +95,12 @@
                             <i class="fa fa-comment"></i>
                             <%= t('label.comment') %>
                         </a>
+                    </li>
+                    <li>
+                        <%=
+                            link_to "<i class='fa fa-share'></i> #{t('label.share')}".html_safe,
+                            share_post_path(post.id)
+                        %>
                     </li>
                 </ul>
             </div>

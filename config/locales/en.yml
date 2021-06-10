@@ -37,6 +37,7 @@ en:
     whats_happening: "What's Happening?"
     first_name: "First name"
     last_name: "Last name"
+    say_something_about: "Say something about this."
   label:
     sign_up: "Sign Up"
     sign_in: "Sign In"
@@ -75,6 +76,8 @@ en:
     posts: "Posts"
     edit_profile: "Edit Profile"
     people: "People"
+    share: "Share"
+    share_post: "Share Post"
   message:
     rails_microblog_text: "Ruby on Rails Microblog."
     rails_microblog_sub_text: "A simple social media website."

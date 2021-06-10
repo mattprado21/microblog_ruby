@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
   
-  get 'home/index', to: 'home#index'
+  get 'home/index', to: 'home#index' 
   post '/home/index', to: 'posts#create'
   patch '/users/edit', to: 'users#update_profile'
 
   resources :posts, only: [:show, :edit, :update, :destroy] do
     resources :likes
     resources :comments
+    member do
+      post :repost
+      get :share
+    end
   end
   
   resources :users do

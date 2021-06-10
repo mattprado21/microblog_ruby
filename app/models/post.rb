@@ -3,7 +3,10 @@ class Post < ApplicationRecord
     belongs_to :user
     has_many :likes, dependent: :destroy
     has_many :comments, -> { where(deleted: false) }
-
+    # has_many :retweeter, :class_name => "user"
+    
+    belongs_to :share, :class_name => "Post", :foreign_key => "post_id"
+    # has_many :share, :class_name => "Post", :foreign_key => "post_id"
     has_one_attached :image
 
     # Pagination
